@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <Card className="w-[400px]">
+      <Card className="w-[400px] transition-all duration-300 hover:shadow-lg">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
           <CardDescription className="text-center">
@@ -48,6 +48,7 @@ export default function LoginPage() {
                   type="email"
                   placeholder="name@example.com"
                   required
+                  className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
@@ -56,6 +57,7 @@ export default function LoginPage() {
                   id="password"
                   type="password"
                   required
+                  className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               {error && (
@@ -67,7 +69,11 @@ export default function LoginPage() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Button className="w-full" onClick={onSubmit} disabled={isLoading}>
+          <Button 
+            className="w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-md" 
+            onClick={onSubmit} 
+            disabled={isLoading}
+          >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
@@ -75,7 +81,7 @@ export default function LoginPage() {
           </Button>
           <div className="text-sm text-center">
             Don't have an account?{" "}
-            <Link href="/register" className="text-primary hover:underline">
+            <Link href="/register" className="text-primary hover:underline transition-colors duration-300">
               Sign up
             </Link>
           </div>

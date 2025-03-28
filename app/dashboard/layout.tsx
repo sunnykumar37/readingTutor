@@ -4,12 +4,13 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { BookOpen, BookText, Home, Library, LogOut, Menu, Settings, User, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { toast } from 'sonner'
 
 const sidebarNavItems = [
   {
@@ -40,7 +41,17 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const router = useRouter()
   const [open, setOpen] = useState(false)
+
+  const handleLogout = () => {
+    // Clear all stored data
+    localStorage.clear()
+    // Show success message
+    toast.success('Logged out successfully')
+    // Redirect to landing page
+    router.push('/')
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -76,7 +87,7 @@ export default function DashboardLayout({
               <Button variant="ghost" size="icon">
                 <User className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" onClick={handleLogout}>
                 <LogOut className="h-5 w-5" />
               </Button>
             </nav>
@@ -116,6 +127,16 @@ export default function DashboardLayout({
 
 function MobileNav({ items }: { items: typeof sidebarNavItems }) {
   const pathname = usePathname()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    // Clear all stored data
+    localStorage.clear()
+    // Show success message
+    toast.success('Logged out successfully')
+    // Redirect to landing page
+    router.push('/')
+  }
 
   return (
     <nav className="grid items-start gap-2">
@@ -129,6 +150,11 @@ function MobileNav({ items }: { items: typeof sidebarNavItems }) {
               'group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
               pathname === item.href ? 'bg-accent' : 'transparent'
             )}
+            onClick={() => {
+              if (item.href === "/dashboard/logout") {
+                handleLogout()
+              }
+            }}
           >
             <Icon className="mr-2 h-4 w-4" />
             <span>{item.title}</span>
