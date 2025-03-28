@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, BookOpen, Brain, LineChartIcon as ChartLineUp, UserRound } from "lucide-react"
 
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -79,11 +80,11 @@ export default function Home() {
               <div className="relative mx-auto aspect-video overflow-hidden rounded-xl sm:w-full lg:order-last">
                 <div className="absolute -top-16 -left-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
                 <div className="absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-primary/20 blur-3xl"></div>
-                <img
-                  src="/placeholder.jpg"
+                <Image
+                  src="/placeholder.svg?height=550&width=550&text=ReadSmart+AI"
                   width={550}
                   height={550}
-                  alt="Reading with AI"
+                  alt="Hero Image"
                   className="relative z-10 mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full"
                 />
               </div>
